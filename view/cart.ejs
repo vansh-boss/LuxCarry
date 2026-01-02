@@ -1,0 +1,193 @@
+<%- include('./partials/header') %>
+<%- include('./partials/bg-video') %>
+
+
+<div class="relative z-10 w-full min-h-screen
+            bg-white/16 
+            px-4 sm:px-8 lg:px-20 py-24 hover:shadow-xl hover:-translate-y-1 transition duration-300">
+
+  <div class="flex flex-col lg:flex-row gap-8">
+
+    <!-- LEFT : PRODUCT CARD -->
+    <div class="w-full lg:w-[35%]
+                rounded-2xl overflow-hidden
+                bg-white/90 backdrop-blur
+                border border-white/60
+                shadow-lg hover:shadow-2xl
+                hover:-translate-y-1
+                transition-all duration-300">
+
+      <!-- IMAGE -->
+   
+<div class="w-full h-64 sm:h-80
+            flex justify-center items-center
+            bg-gradient-to-br
+            from-slate-50 via-gray-100 to-slate-200
+            border-b
+            transition-all duration-300
+            hover:from-slate-100 hover:to-gray-200">
+
+  <img
+    src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
+    class="h-48 sm:h-56 object-contain
+           drop-shadow-lg
+           transition-transform duration-300
+           hover:scale-105" />
+</div>
+
+
+      <!-- PRODUCT INFO -->
+      <div class="w-full flex justify-between items-center
+                  px-4 sm:px-5 py-4
+                  bg-white border-t">
+
+        <h3 class="text-lg sm:text-2xl font-semibold text-gray-800">
+          Clinge Bag
+        </h3>
+
+        <div class="flex items-center gap-2">
+          <i class="w-8 h-8 bg-white shadow
+                    flex rounded-full
+                    items-center justify-center
+                    ri-add-line cursor-pointer
+                    hover:bg-green-100 transition"></i>
+
+          <div class="px-3 py-1 rounded-md
+                      bg-white shadow
+                      text-sm font-medium">
+            01
+          </div>
+
+          <i class="w-8 h-8 bg-white shadow
+                    flex rounded-full
+                    items-center justify-center
+                    ri-subtract-line cursor-pointer
+                    hover:bg-red-100 transition"></i>
+        </div>
+      </div>
+
+      <!-- NET TOTAL -->
+      <div class="flex items-center justify-between
+                  px-4 sm:px-5 py-3
+                  bg-gradient-to-r from-black to-gray-800
+                  text-white">
+        <h4 class="text-base sm:text-lg">Net Total</h4>
+        <h2 class="text-base sm:text-lg font-semibold">
+          ₹ <%= bill %>
+        </h2>
+      </div>
+
+    </div>
+
+    <!-- RIGHT : PRICE DETAILS -->
+     
+    <div class="w-full lg:w-[65%]
+                bg-white/95 backdrop-blur
+                rounded-2xl
+                border border-white/60
+                shadow-lg hover:shadow-2xl
+                p-5 sm:p-8
+                transition-all duration-300">
+                
+
+      <h3 class="text-lg sm:text-xl font-semibold">
+        Price Breakdown
+      </h3>
+
+
+      <div class="mt-6 space-y-3 text-sm sm:text-base">
+        
+
+        <div class="flex justify-between p-3 rounded-lg
+                    hover:bg-gray-100
+                    hover:shadow-md hover:-translate-y-0.5
+                    transition">
+          <span>Total MRP</span>
+         <span>₹ <%= product.price %></span>
+
+        </div>
+
+        <div class="flex justify-between p-3 rounded-lg
+                    hover:bg-gray-100
+                    hover:shadow-md hover:-translate-y-0.5
+                    transition">
+          <span>Discount on MRP</span>
+          <span class="text-green-600 font-medium">
+            - ₹ <%= Number(product.discount || 0) %>
+
+          </span>
+        </div>
+
+        <div class="flex justify-between p-3 rounded-lg
+                    hover:bg-gray-100
+                    hover:shadow-md hover:-translate-y-0.5
+                    transition">
+          <span>Platform Fee</span>
+          <span>₹ 0</span>
+        </div>
+
+        <div class="flex justify-between p-3 rounded-lg
+                    hover:bg-gray-100
+                    hover:shadow-md hover:-translate-y-0.5
+                    transition">
+          <span>Shipping Fee</span>
+          <span class="text-green-600 font-semibold">
+            FREE
+          </span>
+        </div>
+
+      </div>
+
+      <div class="w-full h-px bg-gray-300 my-6"></div>
+
+      <div class="flex justify-between items-center
+                  bg-green-50 p-4 rounded-xl">
+        <h3 class="text-lg sm:text-xl font-semibold">
+          Total Amount
+        </h3>
+        <h3 class="text-lg sm:text-xl font-bold text-green-600">
+        ₹ <%= bill %>
+
+        </h3>
+      </div>
+
+      <!-- CTA -->
+     <div class="mt-6 flex items-center gap-4">
+
+  <!-- Back Arrow -->
+   <a href="/shop">
+  <button 
+    class="w-12 h-12
+           flex items-center justify-center
+           rounded-full
+            bg-gradient-to-r from-black to-gray-800
+           text-white font-semibold
+           hover:from-gray-800 hover:to-black
+           hover:shadow-xl hover:-translate-y-1
+           transition-all duration-300">
+    ← 
+     </button>
+  </a>
+ 
+
+
+  <!-- Place Order -->
+  <button
+    class="w-full sm:w-fit
+           px-8 py-3 rounded-xl
+           bg-gradient-to-r from-black to-gray-800
+           text-white font-semibold
+           hover:from-gray-800 hover:to-black
+           hover:shadow-xl hover:-translate-y-1
+           transition-all duration-300">
+    Place Order
+  </button>
+
+</div>
+
+    </div>
+
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

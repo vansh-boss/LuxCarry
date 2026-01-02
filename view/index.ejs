@@ -1,0 +1,92 @@
+<%- include('./partials/header') %>
+
+
+<% if(error.length>0){ %>
+  <div class="absolute top-5 left-1/2 -translate-x-1/2 p-3 rounded-md bg-red-500 z-50">
+    <span class="text-white"><%= error %></span>
+  </div>
+<% } %>
+
+<div class="relative -mt-9 min-h-screen overflow-hidden">
+
+  <!-- VIDEO BACKGROUND -->
+  <video autoplay muted loop playsinline
+  class="absolute inset-0 w-full h-full object-cover z-0 brightness-110 contrast-110">
+
+    <source src="/video/video2.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="absolute inset-0 bg-white/10 z-1 "></div>
+
+  <!-- CONTENT -->
+  <div class="relative z-20 w-full min-h-screen
+              flex flex-col lg:flex-row
+              px-4 sm:px-10 lg:px-20">
+
+    <!-- REGISTER -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center py-10">
+      <div class="w-full max-w-md bg-black/40 backdrop-blur-md
+                  p-6 sm:p-10 rounded-xl">
+
+        <h3 class="text-3xl sm:text-4xl text-white mb-2">
+          Welcome to <span class="text-blue-400 font-semibold">Scatch</span>
+        </h3>
+        <h4 class="text-lg sm:text-2xl mb-5 text-gray-200">
+          create your account
+        </h4>
+
+        <form autocomplete="off" action="/user/register" method="post">
+          <input
+            class="bg-zinc-100 w-full px-3 py-2 rounded-md mb-3"
+            type="text" placeholder="Full Name" name="fullname">
+
+          <input
+            class="bg-zinc-100 w-full px-3 py-2 rounded-md mb-3"
+            type="email" placeholder="Email" name="email">
+
+          <input
+            class="bg-zinc-100 w-full px-3 py-2 rounded-md mb-3"
+            type="password" placeholder="Password" name="password">
+
+          <input
+            class="w-full sm:w-auto px-6 py-3 mt-2
+                   bg-blue-500 text-white rounded-full
+                   hover:bg-blue-600 transition"
+            type="submit"
+            value="Create My Account">
+        </form>
+      </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center py-10">
+      <div class="w-full max-w-md bg-black/40 backdrop-blur-md
+                  p-6 sm:p-10 rounded-xl">
+
+        <h4 class="text-xl sm:text-2xl mb-5 text-white capitalize">
+          login your account
+        </h4>
+
+        <form autocomplete="off" action="/user/login" method="post">
+          <input
+            class="bg-zinc-100 w-full px-3 py-2 rounded-md mb-3"
+            type="email" placeholder="Email" name="email">
+
+          <input
+            class="bg-zinc-100 w-full px-3 py-2 rounded-md mb-3"
+            type="password" placeholder="Password" name="password">
+
+          <input
+            class="w-full sm:w-auto px-6 py-3 mt-2
+                   bg-blue-500 text-white rounded-full
+                   hover:bg-blue-600 transition"
+            type="submit"
+            value="Login">
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
