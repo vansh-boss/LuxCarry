@@ -1,14 +1,24 @@
-const  mongoose = require('mongoose');
-const dbgr = require("debug")("development:mongoose");
-const config = require("config");
+const mongoose = require("mongoose");
 
-mongoose
-.connect(`${config.get("MONGODB_URI")}/BAGG`)
-.then(function(){
-     dbgr("connected");
-})
-.catch(function(err){
-    dbgr(err);
-})
+let cached = global.mongoose;
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
 
-module.exports = mongoose.connection;
+async function dbConnect() {
+  if (cached.conn) {
+    return cached.conn;
+  }
+
+  if (!cached.promise) {
+    const opts = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    };
+    cached.promise = mongoose.connect(process.env.MONGODB_URI, opts).then(mongoose => mongoose);
+  }
+  cached.conn = await cached.promise;
+  return cached.conn;
+}
+
+module.exports = dbConnect;

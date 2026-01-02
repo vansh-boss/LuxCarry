@@ -54,4 +54,6 @@ app.use("/user",userRouter);
 
 
 
-module.exports = app;
+app.listen(8100, () => {
+    console.log("Server running on port 8100");
+});
