@@ -6,16 +6,9 @@ let isConnected = false;
 async function connectDB() {
   if (isConnected) return;
 
-  try {
-    const conn = await mongoose.connect(`${MONGODB_URI}/BAGG`);
-    isConnected = conn.connections[0].readyState;
-    console.log("MongoDB connected");
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
+  const conn = await mongoose.connect(`${MONGODB_URI}/BAGG`);
+  isConnected = conn.connections[0].readyState;
+  console.log("MongoDB connected");
 }
 
-connectDB();
-
-module.exports = mongoose.connection;
+module.exports = connectDB;

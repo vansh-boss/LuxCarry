@@ -8,6 +8,13 @@ const flash = require("connect-flash");
 const { JWT_KEY } = require("./config/keys");
 const compression = require("compression");
 
+
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
+
+
 const userRouter = require("./router/userRouter");
 const productRouter = require("./router/productRouter");
 const ownerRouter = require("./router/ownerRouter");
@@ -35,10 +42,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view"));
 
-app.use(async (req, res, next) => {
-  await connectDB();
-  next();
-});
 
 
 app.use(compression());
