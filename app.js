@@ -6,11 +6,15 @@ const path = require("path");
 const expressSession = require("express-session");
 const flash = require("connect-flash");
 const { JWT_KEY } = require("./config/keys");
+const compression = require("compression");
 
 const userRouter = require("./router/userRouter");
 const productRouter = require("./router/productRouter");
 const ownerRouter = require("./router/ownerRouter");
 const indexRouter = require("./router/indexRouter");
+
+const { connectDB } = require("./config/mongoose.connection");
+
 
 require("./config/mongoose.connection");
 
@@ -31,6 +35,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view"));
 
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
+
+
+app.use(compression());
 app.use("/", indexRouter);
 app.use("/owner", ownerRouter);
 app.use("/owner/product", productRouter);
