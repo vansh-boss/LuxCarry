@@ -9,9 +9,11 @@ const { JWT_KEY } = require("./config/keys");
 const compression = require("compression");
 
 
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
 
-const { connectDB } = require("./config/mongoose.connection");
-connectDB();
 
 const userRouter = require("./router/userRouter");
 const productRouter = require("./router/productRouter");
